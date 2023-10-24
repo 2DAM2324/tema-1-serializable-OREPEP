@@ -5,6 +5,7 @@
  */
 package Ventana;
 
+import Modelo.Bibliotecaria;
 import Modelo.Libro;
 import Modelo.Prestamo;
 import Modelo.Provedores;
@@ -58,6 +59,10 @@ public class Ventana1 extends javax.swing.JFrame {
         modeloPrestamo2 = (DefaultTableModel) jTable_prestamo.getModel();
         this.jTable_prestamo.setModel(modeloPrestamo2);
         MostrarPrestamoEnTabla();
+        
+        modeloBibliotecaria = (DefaultTableModel) jTable_Bibliotecaria.getModel();
+        this.jTable_Bibliotecaria.setModel(modeloBibliotecaria);
+        MostrarBibliotecariaEnTabla();
         
     }
     
@@ -128,6 +133,17 @@ public class Ventana1 extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jTextField_provedorTabla = new javax.swing.JTextField();
         jButton_eliminar_provedor = new javax.swing.JButton();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable_Bibliotecaria = new javax.swing.JTable();
+        jButton_modificar_bibliotecaria = new javax.swing.JButton();
+        jButton_borrar_bibliotecaria = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField_dni_bibliotecaria = new javax.swing.JTextField();
+        jButton_anaidr_bibliotecaria = new javax.swing.JButton();
+        jButton_guardar_bibliotecaria = new javax.swing.JButton();
+        jButton_cancelar_bibliotecaria = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -139,6 +155,19 @@ public class Ventana1 extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable_prestamo = new javax.swing.JTable();
+        jTabbedPane5 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable_revison = new javax.swing.JTable();
+        jButton_modificar_revision = new javax.swing.JButton();
+        jButton_borrar_revision = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField_bibliotecaria_revison = new javax.swing.JTextField();
+        jTextField_material_revision = new javax.swing.JTextField();
+        jButton_añadir_revision = new javax.swing.JButton();
+        jButton_guardar_revision = new javax.swing.JButton();
+        jButton_cancelar_revision = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -314,7 +343,7 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addComponent(jLabel_ciudad_natal)
                     .addComponent(jTextField_Telefono_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_cancelar_persona))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cliente", jPanel_persona);
@@ -477,7 +506,7 @@ public class Ventana1 extends javax.swing.JFrame {
                         .addComponent(GuardarLibro)
                         .addGap(26, 26, 26)
                         .addComponent(jButton_cancelar_libro)))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Libro", jPanel_libro);
@@ -639,7 +668,7 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addGroup(jPanel_bibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_anio_publicacion1)
                     .addComponent(jTextField_doi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Tesis", jPanel_biblioteca);
@@ -769,12 +798,118 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addComponent(jButton6))
                 .addGap(42, 42, 42)
                 .addComponent(jButton7)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("", jPanel2);
 
         jTabbedPane1.addTab("Proovedor", jTabbedPane3);
+
+        jTable_Bibliotecaria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Dni"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable_Bibliotecaria);
+
+        jButton_modificar_bibliotecaria.setText("Modificar");
+        jButton_modificar_bibliotecaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_modificar_bibliotecariaActionPerformed(evt);
+            }
+        });
+
+        jButton_borrar_bibliotecaria.setText("Borrar");
+        jButton_borrar_bibliotecaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_borrar_bibliotecariaActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Dni");
+
+        jTextField_dni_bibliotecaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Texto_id_bibliotecaria(evt);
+            }
+        });
+
+        jButton_anaidr_bibliotecaria.setText("Añadir");
+        jButton_anaidr_bibliotecaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_anaidr_bibliotecariaActionPerformed(evt);
+            }
+        });
+
+        jButton_guardar_bibliotecaria.setText("Guardar");
+        jButton_guardar_bibliotecaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_guardar_bibliotecariaActionPerformed(evt);
+            }
+        });
+
+        jButton_cancelar_bibliotecaria.setText("Cancelar");
+        jButton_cancelar_bibliotecaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_cancelar_bibliotecariaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField_dni_bibliotecaria, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton_modificar_bibliotecaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_borrar_bibliotecaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton_guardar_bibliotecaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_anaidr_bibliotecaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_cancelar_bibliotecaria, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(28, 28, 28))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jButton_modificar_bibliotecaria)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton_borrar_bibliotecaria))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addComponent(jButton_anaidr_bibliotecaria)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_guardar_bibliotecaria)
+                    .addComponent(jTextField_dni_bibliotecaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(34, 34, 34)
+                .addComponent(jButton_cancelar_bibliotecaria)
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+
+        jTabbedPane4.addTab("", jPanel3);
+
+        jTabbedPane1.addTab("Bibliotecaria", jTabbedPane4);
 
         jTabbedPane.addTab("Base de datos", jTabbedPane1);
 
@@ -887,12 +1022,102 @@ public class Ventana1 extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addComponent(jButton4)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("", jPanel1);
 
         jTabbedPane.addTab("Préstamo", jTabbedPane2);
+
+        jTable_revison.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Id bibliotecaria", "Id Material", "Fecha Revision"
+            }
+        ));
+        jScrollPane8.setViewportView(jTable_revison);
+
+        jButton_modificar_revision.setText("Modificar");
+
+        jButton_borrar_revision.setText("Borrar");
+
+        jLabel5.setText("Id Bibliotecaria");
+
+        jLabel6.setText("Id material");
+
+        jButton_añadir_revision.setText("Añadir");
+
+        jButton_guardar_revision.setText("Guardar");
+
+        jButton_cancelar_revision.setText("Cancelar");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(33, 33, 33)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField_bibliotecaria_revison)
+                                    .addComponent(jTextField_material_revision))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton_modificar_revision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_borrar_revision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton_añadir_revision, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_cancelar_revision, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_guardar_revision, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton_modificar_revision)
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton_borrar_revision)))
+                .addGap(85, 85, 85)
+                .addComponent(jButton_añadir_revision)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField_bibliotecaria_revison, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(jButton_guardar_revision)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField_material_revision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addComponent(jButton_cancelar_revision)
+                .addContainerGap(112, Short.MAX_VALUE))
+        );
+
+        jTabbedPane5.addTab("", jPanel4);
+
+        jTabbedPane.addTab("Revisiones", jTabbedPane5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1210,7 +1435,57 @@ public class Ventana1 extends javax.swing.JFrame {
         }
         MostrarPrestamoEnTabla();
     }//GEN-LAST:event_jButton3ActionPerformed
-    
+
+    private void jButton_borrar_bibliotecariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_borrar_bibliotecariaActionPerformed
+        filaSeleccionadaTablaBibliotecaria = jTable_Bibliotecaria.getSelectedRow();
+        
+        if(filaSeleccionadaTablaBibliotecaria != -1){
+            Object dniObj = jTable_Bibliotecaria.getValueAt(filaSeleccionadaTablaBibliotecaria, jTable_Bibliotecaria.getColumn("Dni").getModelIndex());
+            String idPrestamo = dniObj.toString();
+            controlador.EliminarBibliotecaria(idPrestamo);
+        }
+        MostrarBibliotecariaEnTabla();
+    }//GEN-LAST:event_jButton_borrar_bibliotecariaActionPerformed
+
+    private void Texto_id_bibliotecaria(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Texto_id_bibliotecaria
+        IdBibliotecaria = jTextField_dni_bibliotecaria.getText();
+    }//GEN-LAST:event_Texto_id_bibliotecaria
+
+    private void jButton_cancelar_bibliotecariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelar_bibliotecariaActionPerformed
+        jTextField_dni_bibliotecaria.setText("");
+    }//GEN-LAST:event_jButton_cancelar_bibliotecariaActionPerformed
+
+    private void jButton_anaidr_bibliotecariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_anaidr_bibliotecariaActionPerformed
+
+        Texto_id_bibliotecaria(evt);
+        controlador.CrearBibliotecaria(IdBibliotecaria);
+        MostrarBibliotecariaEnTabla();
+    }//GEN-LAST:event_jButton_anaidr_bibliotecariaActionPerformed
+
+    private void jButton_modificar_bibliotecariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_modificar_bibliotecariaActionPerformed
+        filaSeleccionadaTablaBibliotecaria = jTable_Bibliotecaria.getSelectedRow();
+        String idProvedor2 = null;
+        if (filaSeleccionadaTablaBibliotecaria != -1) {
+            Object proObj = jTable_Bibliotecaria.getValueAt(filaSeleccionadaTablaBibliotecaria, jTable_Bibliotecaria.getColumn("Dni").getModelIndex());
+            idProvedor2 = proObj.toString();
+        }
+        ArrayList<Bibliotecaria> listaBibliotecaria;
+        listaBibliotecaria = controlador.GetBibliotecaria();
+
+        for(Bibliotecaria u : listaBibliotecaria){
+            if (idProvedor2 != null && idProvedor2.equals(u.getDni())){
+                jTextField_dni_bibliotecaria.setText(u.getDni());
+            }
+        }
+    }//GEN-LAST:event_jButton_modificar_bibliotecariaActionPerformed
+
+    private void jButton_guardar_bibliotecariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardar_bibliotecariaActionPerformed
+        jButton_borrar_bibliotecariaActionPerformed(evt);
+        jButton_anaidr_bibliotecariaActionPerformed(evt);
+    }//GEN-LAST:event_jButton_guardar_bibliotecariaActionPerformed
+    private void Texto_id_bibliotecaria(java.awt.event.KeyEvent evt) {                                        
+        IdBibliotecaria = jTextField_dni_bibliotecaria.getText();
+    } 
     private void Texto_usuario_prestamo(java.awt.event.KeyEvent evt) {                                        
         UsuarioPrestamo = jTextField2.getText();
     } 
@@ -1299,6 +1574,16 @@ public class Ventana1 extends javax.swing.JFrame {
         }
     }
     
+    private void MostrarBibliotecariaEnTabla(){
+        ArrayList<Bibliotecaria> listaBibliotecarias;
+        listaBibliotecarias = controlador.GetBibliotecaria();
+        modeloBibliotecaria.setRowCount(0);
+        
+        for(Bibliotecaria b : listaBibliotecarias){
+            modeloBibliotecaria.addRow(new Object[] {b.getDni()});
+        }
+    }
+    
     //Variables de la pestaña cliente.
     String nombreCliente;
     String DniCliente;
@@ -1335,6 +1620,11 @@ public class Ventana1 extends javax.swing.JFrame {
     private DefaultTableModel modeloPrestamo2;
     private int filaSeleccionadaTablaPrestamo = -1;
     
+    //variable bibliotecaria
+    String IdBibliotecaria = null;
+    private DefaultTableModel modeloBibliotecaria;
+    private int filaSeleccionadaTablaBibliotecaria = -1;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
     private javax.swing.JButton GuardarLibro;
@@ -1346,52 +1636,79 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton_anaidr_bibliotecaria;
     private javax.swing.JButton jButton_aniadir_biblioteca;
     private javax.swing.JButton jButton_aniadir_libro;
     public javax.swing.JButton jButton_aniadir_persona;
+    private javax.swing.JButton jButton_añadir_revision;
     private javax.swing.JButton jButton_borrar_biblioteca;
+    private javax.swing.JButton jButton_borrar_bibliotecaria;
     private javax.swing.JButton jButton_borrar_libro;
     public javax.swing.JButton jButton_borrar_persona;
+    private javax.swing.JButton jButton_borrar_revision;
     private javax.swing.JButton jButton_cancelar_biblioteca;
+    private javax.swing.JButton jButton_cancelar_bibliotecaria;
     public javax.swing.JButton jButton_cancelar_libro;
     private javax.swing.JButton jButton_cancelar_persona;
+    private javax.swing.JButton jButton_cancelar_revision;
     private javax.swing.JButton jButton_eliminar_provedor;
+    private javax.swing.JButton jButton_guardar_bibliotecaria;
+    private javax.swing.JButton jButton_guardar_revision;
     private javax.swing.JButton jButton_modificar_biblioteca;
+    private javax.swing.JButton jButton_modificar_bibliotecaria;
     private javax.swing.JButton jButton_modificar_libro;
     public javax.swing.JButton jButton_modificar_persona;
+    private javax.swing.JButton jButton_modificar_revision;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel_DNI;
     private javax.swing.JLabel jLabel_anio_publicacion;
     private javax.swing.JLabel jLabel_anio_publicacion1;
     private javax.swing.JLabel jLabel_autor;
     private javax.swing.JLabel jLabel_ciudad_natal;
     private javax.swing.JLabel jLabel_direccion;
+    private javax.swing.JLabel jLabel_direccion1;
     private javax.swing.JLabel jLabel_edad_persona;
     private javax.swing.JLabel jLabel_edad_recomendada;
     private javax.swing.JLabel jLabel_nombre_biblioteca;
+    private javax.swing.JLabel jLabel_nombre_biblioteca1;
     private javax.swing.JLabel jLabel_nombre_libro;
     private javax.swing.JLabel jLabel_nombre_persona;
     private javax.swing.JLabel jLabel_telefono;
+    private javax.swing.JLabel jLabel_telefono1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel_biblioteca;
+    private javax.swing.JPanel jPanel_biblioteca1;
     private javax.swing.JPanel jPanel_libro;
     private javax.swing.JPanel jPanel_persona;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTable jTable_Bibliotecaria;
     private javax.swing.JTable jTable_Tesis;
+    private javax.swing.JTable jTable_Tesis1;
     private javax.swing.JTable jTable_libro;
     public javax.swing.JTable jTable_persona;
     public javax.swing.JTable jTable_prestamo;
     public javax.swing.JTable jTable_provedor;
+    private javax.swing.JTable jTable_revison;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -1399,15 +1716,19 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_Telefono_cliente;
     private javax.swing.JTextField jTextField_autor;
     public javax.swing.JTextField jTextField_autor_tesis;
+    private javax.swing.JTextField jTextField_bibliotecaria_revison;
+    private javax.swing.JTextField jTextField_dni_bibliotecaria;
     public javax.swing.JTextField jTextField_doi;
     public javax.swing.JTextField jTextField_doi1;
     private javax.swing.JTextField jTextField_edad_persona;
     private javax.swing.JTextField jTextField_isbn;
+    private javax.swing.JTextField jTextField_material_revision;
     private javax.swing.JTextField jTextField_nombre_libro;
     private javax.swing.JTextField jTextField_nombre_persona;
     private javax.swing.JTextField jTextField_provedor;
     public javax.swing.JTextField jTextField_provedorTabla;
     public javax.swing.JTextField jTextField_titulo_tesis;
+    public javax.swing.JTextField jTextField_titulo_tesis1;
     // End of variables declaration//GEN-END:variables
     /*
     //private ArrayList<Ciudad> ciudades;

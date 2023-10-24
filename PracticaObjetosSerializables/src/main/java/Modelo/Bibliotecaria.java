@@ -17,12 +17,8 @@ public class Bibliotecaria implements Serializable{
     private String apellido2;
     private String telefono;
 
-    public Bibliotecaria(String dni, String nombre, String apellido1, String apellido2, String telefono) {
+    public Bibliotecaria(String dni) {
         this.dni = dni;
-        this.nombre = nombre;
-        this.apellido1 = apellido1;
-        this.apellido2 = apellido2;
-        this.telefono = telefono;
     }
 
     public String getDni() {

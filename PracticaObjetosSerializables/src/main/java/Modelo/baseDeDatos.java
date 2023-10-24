@@ -292,5 +292,53 @@ public class baseDeDatos{
             System.out.println("Proveedor " + proveedorAEliminar + " no encontrado.");
         }
     }
+    
+    public static void escribirBibliotecariasEnArchivo(ArrayList<Bibliotecaria> listaBibliotecaria, String nombreArchivo) {
+        try (FileOutputStream fileOut = new FileOutputStream(nombreArchivo);
+             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+
+            objectOut.writeObject(listaBibliotecaria);
+            System.out.println("Bibliotecarias guardadas en el archivo: " + nombreArchivo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Bibliotecaria> leerBibliotecariasDesdeArchivo(String nombreArchivo) {
+        ArrayList<Bibliotecaria> listaBibliotecaria = new ArrayList<>();
+
+        try (FileInputStream fileIn = new FileInputStream(nombreArchivo);
+             ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+
+            listaBibliotecaria = (ArrayList<Bibliotecaria>) objectIn.readObject();
+            System.out.println("Bibliotecarias cargadas desde el archivo: " + nombreArchivo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listaBibliotecaria;
+    }
+
+    public static void eliminarBibliotecaria(String nombreArchivo, String dniBibliotecaria) {
+        // Leer la lista de bibliotecarias desde el archivo
+        ArrayList<Bibliotecaria> listaBibliotecaria = leerBibliotecariasDesdeArchivo(nombreArchivo);
+
+        // Buscar la bibliotecaria con el DNI específico y eliminarla
+        Bibliotecaria bibliotecariaAEliminar = null;
+        for (Bibliotecaria bibliotecaria : listaBibliotecaria) {
+            if (bibliotecaria.getDni().equals(dniBibliotecaria)) {
+                bibliotecariaAEliminar = bibliotecaria;
+                break; // Salir del bucle una vez que se haya encontrado la bibliotecaria.
+            }
+        }
+
+        if (bibliotecariaAEliminar != null) {
+            listaBibliotecaria.remove(bibliotecariaAEliminar);
+            escribirBibliotecariasEnArchivo(listaBibliotecaria, nombreArchivo);
+            System.out.println("Bibliotecaria con DNI " + dniBibliotecaria + " eliminada con éxito.");
+        } else {
+            System.out.println("Bibliotecaria con DNI " + dniBibliotecaria + " no encontrada.");
+        }
+    }
 }
 

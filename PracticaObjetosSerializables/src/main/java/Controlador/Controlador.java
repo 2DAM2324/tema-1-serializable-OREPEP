@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador;
+import Modelo.Bibliotecaria;
 import Modelo.Usuario;
 import Modelo.Libro;
 import Modelo.Prestamo;
@@ -54,7 +55,24 @@ public class Controlador {
     public void EliminarPrestamo(String id){
         baseDeDatos.eliminarPrestamo("Prestamos", id);
     }
-    
+    public void EliminarBibliotecaria(String id){
+        baseDeDatos.eliminarBibliotecaria("Bibliotecarias.xml", id);
+    }
+    public void CrearBibliotecaria(String id){
+        if((id.isEmpty() == false)){
+            Boolean comprobar = false;
+            
+            comprobar = ComprobarSiExisteBibliotecaria(id);
+            
+            if(comprobar == false ){
+                baseDeDatos bd = new baseDeDatos();
+                Bibliotecaria b = new Bibliotecaria(id);
+                ArrayList<Bibliotecaria> lista = bd.leerBibliotecariasDesdeArchivo("Bibliotecarias.xml");
+                lista.add(b);
+                bd.escribirBibliotecariasEnArchivo(lista , "Bibliotecarias.xml");
+            }
+        }
+    }
     public void CrearLibro(String Isbn , String titulo , String autor , String provedor){
         
         Boolean existeProvedor = true;
@@ -189,6 +207,11 @@ public class Controlador {
         ArrayList<Prestamo> listaPrestamos = baseDeDatos.leerPrestamosDesdeArchivo("Prestamos");
         return listaPrestamos;
     }
+    public ArrayList GetBibliotecaria(){
+        baseDeDatos bd = new baseDeDatos();
+        ArrayList<Bibliotecaria> listaBibliotecarias = baseDeDatos.leerBibliotecariasDesdeArchivo("Bibliotecarias.xml");
+        return listaBibliotecarias;
+    }
     
     private Boolean ComprobarSiExisteProvedor(String provedor){
         Boolean comprobarSiExiste = false ;
@@ -241,5 +264,16 @@ public class Controlador {
         }
         
         return comprobarSiExiste;
+    }
+    private Boolean ComprobarSiExisteBibliotecaria(String id){
+        Boolean existe = false;
+        ArrayList<Bibliotecaria> lista = GetBibliotecaria();
+        
+        for(Bibliotecaria b : lista){
+            if(b.getDni().equals(id)){
+                existe = true;
+            }
+        }
+        return existe;
     }
 }
