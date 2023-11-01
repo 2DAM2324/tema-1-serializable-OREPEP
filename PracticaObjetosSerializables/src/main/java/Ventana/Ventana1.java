@@ -9,6 +9,7 @@ import Modelo.Bibliotecaria;
 import Modelo.Libro;
 import Modelo.Prestamo;
 import Modelo.Provedores;
+import Modelo.RevisarMaterial;
 import Modelo.Tesis;
 import Modelo.Usuario;
 import Controlador.Controlador;
@@ -63,6 +64,11 @@ public class Ventana1 extends javax.swing.JFrame {
         modeloBibliotecaria = (DefaultTableModel) jTable_Bibliotecaria.getModel();
         this.jTable_Bibliotecaria.setModel(modeloBibliotecaria);
         MostrarBibliotecariaEnTabla();
+        
+        modeloRevision = (DefaultTableModel) jTable_revison.getModel();
+        this.jTable_revison.setModel(modeloRevision);
+        MostrarRevisionEnTabla();
+        
         
     }
     
@@ -1043,18 +1049,55 @@ public class Ventana1 extends javax.swing.JFrame {
         jScrollPane8.setViewportView(jTable_revison);
 
         jButton_modificar_revision.setText("Modificar");
+        jButton_modificar_revision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_modificar_revisionActionPerformed(evt);
+            }
+        });
 
         jButton_borrar_revision.setText("Borrar");
+        jButton_borrar_revision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_borrar_revisionActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Id Bibliotecaria");
 
         jLabel6.setText("Id material");
 
+        jTextField_bibliotecaria_revison.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texto_revision_bibliotecaria(evt);
+            }
+        });
+
+        jTextField_material_revision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Texto_revision_material(evt);
+            }
+        });
+
         jButton_añadir_revision.setText("Añadir");
+        jButton_añadir_revision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_añadir_revisionActionPerformed(evt);
+            }
+        });
 
         jButton_guardar_revision.setText("Guardar");
+        jButton_guardar_revision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_guardar_revisionActionPerformed(evt);
+            }
+        });
 
         jButton_cancelar_revision.setText("Cancelar");
+        jButton_cancelar_revision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_cancelar_revisionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1483,6 +1526,65 @@ public class Ventana1 extends javax.swing.JFrame {
         jButton_borrar_bibliotecariaActionPerformed(evt);
         jButton_anaidr_bibliotecariaActionPerformed(evt);
     }//GEN-LAST:event_jButton_guardar_bibliotecariaActionPerformed
+
+    private void jButton_añadir_revisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_añadir_revisionActionPerformed
+        Texto_revision_material(evt);
+        texto_revision_bibliotecaria(evt);
+        controlador.CrearRevisionMaterial(Idrevision_material, idRevision_bibliotecaria);
+        MostrarRevisionEnTabla();
+    }//GEN-LAST:event_jButton_añadir_revisionActionPerformed
+    private void texto_revision_bibliotecaria(java.awt.event.KeyEvent evt) {                                              
+        idRevision_bibliotecaria = jTextField_bibliotecaria_revison.getText();
+    } 
+    private void texto_revision_bibliotecaria(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_revision_bibliotecaria
+        idRevision_bibliotecaria = jTextField_bibliotecaria_revison.getText();
+    }//GEN-LAST:event_texto_revision_bibliotecaria
+    private void Texto_revision_material(java.awt.event.KeyEvent evt) {                                         
+        Idrevision_material = jTextField_material_revision.getText();
+    }  
+    private void Texto_revision_material(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Texto_revision_material
+        Idrevision_material = jTextField_material_revision.getText();
+    }//GEN-LAST:event_Texto_revision_material
+
+    private void jButton_cancelar_revisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelar_revisionActionPerformed
+        jTextField_bibliotecaria_revison.setText("");
+        jTextField_material_revision.setText("");
+    }//GEN-LAST:event_jButton_cancelar_revisionActionPerformed
+
+    private void jButton_borrar_revisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_borrar_revisionActionPerformed
+        filaSeleccionadaRevision = jTable_revison.getSelectedRow();
+        
+        if(filaSeleccionadaRevision != -1){
+            Object obj = jTable_revison.getValueAt(filaSeleccionadaRevision, jTable_revison.getColumn("Id bibliotecaria").getModelIndex());
+            String id = obj.toString();
+            Object obj2 = jTable_revison.getValueAt(filaSeleccionadaRevision, jTable_revison.getColumn("Id Material").getModelIndex());
+            String id2 = obj2.toString();
+            Object obj3 = jTable_revison.getValueAt(filaSeleccionadaRevision, jTable_revison.getColumn("Fecha Revision").getModelIndex());
+            String id3 = obj3.toString();
+            controlador.EliminarRevisionMaterial(id,id2,id3);
+        }
+        MostrarRevisionEnTabla();
+    }//GEN-LAST:event_jButton_borrar_revisionActionPerformed
+
+    private void jButton_modificar_revisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_modificar_revisionActionPerformed
+
+        filaSeleccionadaRevision = jTable_revison.getSelectedRow();
+        
+        if(filaSeleccionadaRevision != -1){
+            Object obj = jTable_revison.getValueAt(filaSeleccionadaRevision, jTable_revison.getColumn("Id bibliotecaria").getModelIndex());
+            String id = obj.toString();
+            Object obj2 = jTable_revison.getValueAt(filaSeleccionadaRevision, jTable_revison.getColumn("Id Material").getModelIndex());
+            String id2 = obj2.toString();
+            jTextField_bibliotecaria_revison.setText(id);
+            jTextField_material_revision.setText(id2);
+        }
+        
+    }//GEN-LAST:event_jButton_modificar_revisionActionPerformed
+
+    private void jButton_guardar_revisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardar_revisionActionPerformed
+        jButton_borrar_revisionActionPerformed(evt);
+        jButton_añadir_revisionActionPerformed(evt);
+    }//GEN-LAST:event_jButton_guardar_revisionActionPerformed
     private void Texto_id_bibliotecaria(java.awt.event.KeyEvent evt) {                                        
         IdBibliotecaria = jTextField_dni_bibliotecaria.getText();
     } 
@@ -1584,6 +1686,15 @@ public class Ventana1 extends javax.swing.JFrame {
         }
     }
     
+    private void MostrarRevisionEnTabla(){
+        ArrayList<RevisarMaterial> lista = controlador.GetRevision();
+        modeloRevision.setRowCount(0);
+        
+        for(RevisarMaterial r : lista){
+            modeloRevision.addRow(new Object[] {r.getBibliotecaria() , r.getMaterialBibliografico() , r.getFechaInicioAsString()});
+        }
+    }
+    
     //Variables de la pestaña cliente.
     String nombreCliente;
     String DniCliente;
@@ -1624,6 +1735,12 @@ public class Ventana1 extends javax.swing.JFrame {
     String IdBibliotecaria = null;
     private DefaultTableModel modeloBibliotecaria;
     private int filaSeleccionadaTablaBibliotecaria = -1;
+    
+    //variables revision 
+    String Idrevision_material;
+    String idRevision_bibliotecaria;
+    private DefaultTableModel modeloRevision;
+    private int filaSeleccionadaRevision = -1;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
@@ -1670,28 +1787,23 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_autor;
     private javax.swing.JLabel jLabel_ciudad_natal;
     private javax.swing.JLabel jLabel_direccion;
-    private javax.swing.JLabel jLabel_direccion1;
     private javax.swing.JLabel jLabel_edad_persona;
     private javax.swing.JLabel jLabel_edad_recomendada;
     private javax.swing.JLabel jLabel_nombre_biblioteca;
-    private javax.swing.JLabel jLabel_nombre_biblioteca1;
     private javax.swing.JLabel jLabel_nombre_libro;
     private javax.swing.JLabel jLabel_nombre_persona;
     private javax.swing.JLabel jLabel_telefono;
-    private javax.swing.JLabel jLabel_telefono1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel_biblioteca;
-    private javax.swing.JPanel jPanel_biblioteca1;
     private javax.swing.JPanel jPanel_libro;
     private javax.swing.JPanel jPanel_persona;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
@@ -1703,7 +1815,6 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTable_Bibliotecaria;
     private javax.swing.JTable jTable_Tesis;
-    private javax.swing.JTable jTable_Tesis1;
     private javax.swing.JTable jTable_libro;
     public javax.swing.JTable jTable_persona;
     public javax.swing.JTable jTable_prestamo;
@@ -1728,7 +1839,6 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_provedor;
     public javax.swing.JTextField jTextField_provedorTabla;
     public javax.swing.JTextField jTextField_titulo_tesis;
-    public javax.swing.JTextField jTextField_titulo_tesis1;
     // End of variables declaration//GEN-END:variables
     /*
     //private ArrayList<Ciudad> ciudades;

@@ -340,5 +340,51 @@ public class baseDeDatos{
             System.out.println("Bibliotecaria con DNI " + dniBibliotecaria + " no encontrada.");
         }
     }
+    
+    public static void escribirREvisionEnArchivo(ArrayList<RevisarMaterial> listaBibliotecaria, String nombreArchivo) {
+        try (FileOutputStream fileOut = new FileOutputStream(nombreArchivo);
+             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+
+            objectOut.writeObject(listaBibliotecaria);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<RevisarMaterial> leerRevisionDesdeArchivo(String nombreArchivo) {
+        ArrayList<RevisarMaterial> listaBibliotecaria = new ArrayList<>();
+
+        try (FileInputStream fileIn = new FileInputStream(nombreArchivo);
+             ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+
+            listaBibliotecaria = (ArrayList<RevisarMaterial>) objectIn.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listaBibliotecaria;
+    }
+    
+    public static void eliminarRevision(String nombreArchivo, String dniBibliotecaria) {
+        // Leer la lista de bibliotecarias desde el archivo
+        ArrayList<RevisarMaterial> listaBibliotecaria = leerRevisionDesdeArchivo(nombreArchivo);
+
+        // Buscar la bibliotecaria con el DNI específico y eliminarla
+        RevisarMaterial bibliotecariaAEliminar = null;
+        for (RevisarMaterial bibliotecaria : listaBibliotecaria) {
+            if (bibliotecaria.getCodigoRevision().equals(dniBibliotecaria)) {
+                bibliotecariaAEliminar = bibliotecaria;
+                break; 
+            }
+        }
+
+        if (bibliotecariaAEliminar != null) {
+            listaBibliotecaria.remove(bibliotecariaAEliminar);
+            escribirREvisionEnArchivo(listaBibliotecaria, nombreArchivo);
+            System.out.println("revision" + dniBibliotecaria + " eliminada con éxito.");
+        } else {
+            System.out.println("Revison " + dniBibliotecaria + " no encontrada.");
+        }
+    }
 }
 

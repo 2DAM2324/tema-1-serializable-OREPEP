@@ -8,6 +8,7 @@ import Modelo.Usuario;
 import Modelo.Libro;
 import Modelo.Prestamo;
 import Modelo.Provedores;
+import Modelo.RevisarMaterial;
 import Modelo.Tesis;
 import Modelo.baseDeDatos;
 import java.util.ArrayList;
@@ -40,6 +41,29 @@ public class Controlador {
         }  
     }
     
+    public void CrearRevisionMaterial(String material , String bibliotecaria){
+        
+        if((material.isEmpty() == false ) && (bibliotecaria.isEmpty() == false)){
+             Boolean existeMaterial = false;
+             Boolean existeBibliotecaria = false;
+             
+             existeMaterial = ComprobarSiExisteIsbn(material);
+             if(existeMaterial == false ){
+                existeMaterial = ComprobarSiExisteDoi(material);
+             }
+             
+             existeBibliotecaria = ComprobarSiExisteBibliotecaria(bibliotecaria);
+             
+             if(existeMaterial == true && existeBibliotecaria == true ){
+                baseDeDatos bd = new baseDeDatos();
+                RevisarMaterial nuevo = new RevisarMaterial(bibliotecaria, material);
+                ArrayList<RevisarMaterial> lista = bd.leerRevisionDesdeArchivo("RevisarMaterial") ;
+                lista.add(nuevo);
+                bd.escribirREvisionEnArchivo(lista , "RevisarMaterial");
+             }
+        }
+    }
+    
     public void EliminarCliente(String dniCliente){
         baseDeDatos.eliminarCliente("clientes" , dniCliente);
     }
@@ -56,8 +80,31 @@ public class Controlador {
         baseDeDatos.eliminarPrestamo("Prestamos", id);
     }
     public void EliminarBibliotecaria(String id){
-        baseDeDatos.eliminarBibliotecaria("Bibliotecarias.xml", id);
+        baseDeDatos.eliminarBibliotecaria("Bibliotecarias", id);
     }
+    
+    public void EliminarRevisionMaterial(String id_bibliotecaria , String id_material , String fecha){
+        String id = "";
+        Boolean encontrado = false ; 
+        ArrayList<RevisarMaterial> lista = baseDeDatos.leerRevisionDesdeArchivo("RevisarMaterial");
+        
+        for(RevisarMaterial m : lista){
+            if(m.getBibliotecaria().equals(id_bibliotecaria)){
+                if(m.getMaterialBibliografico().equals(id_material)){
+                    if(m.getFechaInicioAsString().equals(fecha)){
+                        encontrado = true;
+                        id = m.getCodigoRevision();
+                    }
+                }
+            }
+        }
+        
+        if(encontrado){
+            baseDeDatos.eliminarRevision("RevisarMaterial", id);
+        }
+        
+    }
+    
     public void CrearBibliotecaria(String id){
         if((id.isEmpty() == false)){
             Boolean comprobar = false;
@@ -67,9 +114,9 @@ public class Controlador {
             if(comprobar == false ){
                 baseDeDatos bd = new baseDeDatos();
                 Bibliotecaria b = new Bibliotecaria(id);
-                ArrayList<Bibliotecaria> lista = bd.leerBibliotecariasDesdeArchivo("Bibliotecarias.xml");
+                ArrayList<Bibliotecaria> lista = bd.leerBibliotecariasDesdeArchivo("Bibliotecarias");
                 lista.add(b);
-                bd.escribirBibliotecariasEnArchivo(lista , "Bibliotecarias.xml");
+                bd.escribirBibliotecariasEnArchivo(lista , "Bibliotecarias");
             }
         }
     }
@@ -209,8 +256,14 @@ public class Controlador {
     }
     public ArrayList GetBibliotecaria(){
         baseDeDatos bd = new baseDeDatos();
-        ArrayList<Bibliotecaria> listaBibliotecarias = baseDeDatos.leerBibliotecariasDesdeArchivo("Bibliotecarias.xml");
+        ArrayList<Bibliotecaria> listaBibliotecarias = baseDeDatos.leerBibliotecariasDesdeArchivo("Bibliotecarias");
         return listaBibliotecarias;
+    }
+    
+    public ArrayList GetRevision(){
+        baseDeDatos bd = new baseDeDatos();
+        ArrayList<RevisarMaterial> lista = baseDeDatos.leerRevisionDesdeArchivo("RevisarMaterial");
+        return lista;
     }
     
     private Boolean ComprobarSiExisteProvedor(String provedor){

@@ -1436,11 +1436,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Modificar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_modificar_revisionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton_borrar_revision">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Borrar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_borrar_revisionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
@@ -1453,23 +1459,38 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField_bibliotecaria_revison">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="texto_revision_bibliotecaria"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField_material_revision">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Texto_revision_material"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton_a&#xf1;adir_revision">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_a&#xf1;adir_revisionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton_guardar_revision">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_guardar_revisionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton_cancelar_revision">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_cancelar_revisionActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
